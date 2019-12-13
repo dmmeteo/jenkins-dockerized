@@ -11,7 +11,7 @@ pipeline {
       parallel {
         stage('build_server') {
           steps {
-            sleep 30
+            sleep 40
             echo 'build success'
           }
         }
