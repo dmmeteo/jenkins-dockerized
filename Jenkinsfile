@@ -26,7 +26,14 @@ pipeline {
       }
     }
 
-    stage('test') {
+    stage('test1') {
+      steps {
+        sleep 60
+        echo 'test success'
+      }
+    }
+
+    stage('test2') {
       steps {
         sleep 60
         echo 'test success'
