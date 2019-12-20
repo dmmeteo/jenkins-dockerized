@@ -7,12 +7,16 @@ pipeline {
       }
     }
 
-    stage('build_server') {
+    stage('build') {
       parallel {
         stage('build_server') {
           steps {
             sleep 40
             echo 'build success'
+            sh '''docker pull python:3.7.5
+docker tag python:3.7.5 docker-registry:5000/python3:v1
+docker push docker-registry:5000/python3:v1
+'''
           }
         }
 
@@ -20,6 +24,10 @@ pipeline {
           steps {
             sleep 50
             echo 'build success'
+            sh '''docker pull node:10.18.0
+docker tag python:3.7.5 docker-registry:5000/node10:v1
+docker push docker-registry:5000/node10:v1
+'''
           }
         }
 
