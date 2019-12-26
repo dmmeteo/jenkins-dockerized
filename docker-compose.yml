@@ -1,9 +1,12 @@
 version: '3'
 
 services:
+  # https://docs.docker.com/registry/configuration/
   nexus3:
-    # https://blog.sonatype.com/using-nexus-3-as-your-repository-part-3-docker-images
     # https://github.com/samrocketman/nexus3-config-as-code
+    # https://blog.sonatype.com/using-nexus-3-as-your-repository-part-3-docker-images
+    # https://blog.sonatype.com/using-nexus-3-as-your-repository-part-2-npm-packages
+    # https://stackoverflow.com/questions/54554490/create-and-use-a-pypi-proxy-repository-on-nexus
     image: sonatype/nexus3:latest
     ports:
       - 8081:8081
