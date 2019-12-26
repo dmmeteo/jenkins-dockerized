@@ -1,27 +1,20 @@
 version: '3'
 
 services:
-  docker-registry:
-    image: registry:2
+  nexus3:
+    # https://blog.sonatype.com/using-nexus-3-as-your-repository-part-3-docker-images
+    # https://github.com/samrocketman/nexus3-config-as-code
+    image: sonatype/nexus3:latest
     ports:
-      - 5000:5000
-    restart: always
+      - 8081:8081
+      - 8082:8082
+      - 8083:8083
     volumes:
-      - ./volumes:/var/lib/registry
-  docker-registry-ui:
-    image: konradkleine/docker-registry-frontend:v2
-    ports:
-      - 8000:80
-    environment:
-      ENV_DOCKER_REGISTRY_HOST: docker-registry
-      ENV_DOCKER_REGISTRY_PORT: 5000
-  blueocean:
+      - ./nexus-data:/nexus-data
+  jenkins:
     image: jenkinsci/blueocean:latest
     ports:
       - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./jenkins_data:/var/jenkins_home:rw
-# volumes:
-  # jenkins_data:
-    # external: true
+      - ./jenkins_data:/var/jenkins_home
